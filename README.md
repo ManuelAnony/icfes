@@ -32,3 +32,35 @@ Descripción.
 Fecha de vencimiento.
 Estado (pendiente, en proceso, completado).
 Interfaz de Usuario Amigable: La aplicación utiliza una interfaz de usuario fácil de usar con formularios y tablas para la gestión de proyectos y tareas.
+
+
+Cómo Ejecutar la Aplicación
+Requisitos Previos:
+
+Asegúrate de tener Python y Flask instalados en tu sistema.
+Clonar el Repositorio:
+
+bash
+Copy code
+git clone https://github.com/tuusuario/proyecto-gestion.git
+cd proyecto-gestion
+Configuración:
+
+Abre el archivo config.py y ajusta la configuración de la base de datos, como la URL de la base de datos MongoDB.
+Crear un Entorno Virtual (Opcional):
+
+bash
+Copy code
+python -m venv venv
+source venv/bin/activate  # Para sistemas Unix
+.\venv\Scripts\activate  # Para Windows
+Instalar Dependencias:
+
+Copy code
+pip install -r requirements.txt
+Ejecutar la Aplicación:
+
+Copy code
+python app.py
+Acceder a la Aplicación:
+Abre tu navegador web y visita http://localhost:5000.
