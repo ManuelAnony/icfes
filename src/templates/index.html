@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% block title %}Dashboard {% endblock %}
+
+{% block content %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+            <h1>Dashboard</h1>
+            <!-- Contenido específico del dashboard -->
+             <!-- Registrar nuevo proyecto -->
+             <h2>Registrar Nuevo Proyecto</h2>
+             <form method="POST" action="/registrar_proyecto">
+                 <!-- Contenido del formulario de registro -->
+                <div class="form-group">
+                 <label for="nombre_proyecto">Nombre del Proyecto:</label>
+                 <input type="text" name="nombre_proyecto" class="form-control" required>
+                </div>
+                <div class="form-group">
+                 <label for="descripcion">Descripción:</label>
+                 <input type="text" name="descripcion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                 <label for="fecha_inicio">Fecha de Inicio:</label>
+                 <input type="date" name="fecha_inicio" class="form-control" required>
+                </div>
+                <div class="form-group">
+                 <label for="fecha_finalizacion">Fecha de Finalización:</label>
+                 <input type="date" name="fecha_finalizacion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                 <label for="estado">Estado:</label>
+                 <select name="estado" class="form-control" required>
+                     <option value="pendiente">Pendiente</option>
+                     <option value="en_proceso">En Proceso</option>
+                     <option value="completado">Completado</option>
+                 </select>
+                </div>
+                 <br>
+                 <br>
+                 <input class="btn btn-primary" type="submit" value="Registrar Proyecto">
+             </form>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card card-body">
+            <!-- Ver proyectos en curso -->
+            <h2>Proyectos en Curso</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre del Proyecto</th>
+                        <th>Descripción</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Finalización</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for proyecto in proyectos %}
+                    <tr>
+                        <td>{{ proyecto.nombre }}</td>
+                        <td>{{ proyecto.descripcion }}</td>
+                        <td>{{ proyecto.fecha_inicio }}</td>
+                        <td>{{ proyecto.fecha_finalizacion }}</td>
+                        <td>{{ proyecto.estado }}</td>
+                        <td>
+                            <a href="{{ url_for('asignar_equipo', proyecto_id=proyecto._id) }}" class="btn btn-primary btn-sm">Asignar Equipo</a>
+                            <a href="{{ url_for('eliminar_proyecto', proyecto_id=proyecto._id) }}" class="btn btn-success btn-sm">Eliminar</a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="card card-body">
+                
+                <a href="/logout">Cerrar Sesión</a> <!-- Agregado un enlace para cerrar sesión -->
+            </div>
+
+             </div>
+           
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
